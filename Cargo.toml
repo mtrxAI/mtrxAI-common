@@ -1,0 +1,6 @@
+[workspace]
+members = [
+    "mtrxai-attestation",
+    "mtrxai-tee-attestation",
+]
+resolver = "2"
