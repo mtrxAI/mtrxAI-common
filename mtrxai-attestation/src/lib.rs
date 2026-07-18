@@ -102,6 +102,26 @@ pub fn hash_bytes(data: &[u8]) -> String {
     hex::encode(digest)
 }
 
+/// Map Docker / GOARCH-style platform labels onto Rust `OS/ARCH` strings.
+///
+/// Peer proofs always use `std::env::consts` (`linux/x86_64`, `linux/aarch64`, …).
+/// Older Docker release allowlist rows used `linux/amd64` / `linux/arm64`.
+pub fn normalize_attestation_platform(platform: &str) -> String {
+    match platform.trim() {
+        "linux/amd64" => "linux/x86_64".into(),
+        "linux/arm64" => "linux/aarch64".into(),
+        "darwin/arm64" | "macos/arm64" => "macos/aarch64".into(),
+        "darwin/amd64" | "darwin/x86_64" | "macos/amd64" => "macos/x86_64".into(),
+        "windows/amd64" => "windows/x86_64".into(),
+        "windows/arm64" => "windows/aarch64".into(),
+        other => other.to_string(),
+    }
+}
+
+pub fn platforms_match(allowlist: &str, proof: &str) -> bool {
+    normalize_attestation_platform(allowlist) == normalize_attestation_platform(proof)
+}
+
 pub fn hash_file(path: &std::path::Path) -> Result<String, AttestationError> {
     let bytes = std::fs::read(path)?;
     Ok(hash_bytes(&bytes))
@@ -202,5 +222,13 @@ mod tests {
             ATTESTATION_MTRXAI_BUILD | ATTESTATION_TEE,
             ATTESTATION_MTRXAI_BUILD
         ));
+    }
+
+    #[test]
+    fn docker_platform_aliases_match_rust_consts() {
+        assert!(platforms_match("linux/amd64", "linux/x86_64"));
+        assert!(platforms_match("linux/arm64", "linux/aarch64"));
+        assert!(platforms_match("linux/x86_64", "linux/x86_64"));
+        assert!(!platforms_match("linux/amd64", "linux/aarch64"));
     }
 }
