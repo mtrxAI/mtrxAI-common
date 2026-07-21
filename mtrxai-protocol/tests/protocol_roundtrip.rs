@@ -28,7 +28,8 @@ fn registered_cluster_id_uuid_roundtrip() {
 
 #[test]
 fn room_id_alias_deserializes() {
-    let raw = r#"{"type":"registered","name":"p","room_id":"00000000-0000-0000-0000-0000000000bb"}"#;
+    let raw =
+        r#"{"type":"registered","name":"p","room_id":"00000000-0000-0000-0000-0000000000bb"}"#;
     let msg: ProtocolMessage = serde_json::from_str(raw).unwrap();
     match msg {
         ProtocolMessage::Registered { cluster_id, .. } => {
