@@ -1,0 +1,8 @@
+[package]
+name = "mtrxai-icell-api"
+version = "0.2.1"
+edition = "2021"
+description = "Shared inference-cell admin API paths and DTOs"
+
+[dependencies]
+serde = { version = "1.0", features = ["derive"] }

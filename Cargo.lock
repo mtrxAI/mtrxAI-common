@@ -327,6 +327,26 @@ dependencies = [
 ]
 
 [[package]]
+name = "mtrxai-auth"
+version = "0.1.5"
+
+[[package]]
+name = "mtrxai-icell-api"
+version = "0.1.5"
+dependencies = [
+ "serde",
+]
+
+[[package]]
+name = "mtrxai-protocol"
+version = "0.1.5"
+dependencies = [
+ "serde",
+ "serde_json",
+ "uuid",
+]
+
+[[package]]
 name = "mtrxai-tee-attestation"
 version = "0.1.0"
 dependencies = [

@@ -2,5 +2,8 @@
 members = [
     "mtrxai-attestation",
     "mtrxai-tee-attestation",
+    "mtrxai-protocol",
+    "mtrxai-icell-api",
+    "mtrxai-auth",
 ]
 resolver = "2"

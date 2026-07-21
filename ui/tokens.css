@@ -1,0 +1,10 @@
+/* Shared mtrxAI UI color tokens (peer v2 / server v1). */
+:root {
+  --color-bg: #0f1117;
+  --color-card: #1a1d27;
+  --color-text: #e8eaef;
+  --color-muted: #9aa3b2;
+  --color-accent: #3b82f6;
+  --color-success: #34d399;
+  --color-border: #2a3142;
+}
