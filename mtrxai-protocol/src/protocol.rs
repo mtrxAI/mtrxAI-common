@@ -36,8 +36,13 @@ pub enum ProtocolMessage {
         #[serde(default, skip_serializing_if = "Option::is_none")]
         accepting_jobs: Option<bool>,
     },
-    AvailableModels { models: Vec<Value> },
-    GetPeersForModel { req_id: String, model: String },
+    AvailableModels {
+        models: Vec<Value>,
+    },
+    GetPeersForModel {
+        req_id: String,
+        model: String,
+    },
     PeersForModel {
         req_id: String,
         model: String,

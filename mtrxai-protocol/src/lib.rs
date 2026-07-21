@@ -1,9 +1,9 @@
 //! Shared lobby wire protocol types and ranking helpers.
 
 mod peer;
+mod presence;
 mod protocol;
 mod ranking;
-mod presence;
 
 pub use peer::{GpuDeviceInfo, GpuHostStatus, PeerInfo};
 pub use presence::{PresencePeer, PresencePeersResponse};

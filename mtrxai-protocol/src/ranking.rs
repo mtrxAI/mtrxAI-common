@@ -14,8 +14,7 @@ pub fn haversine_km(lat1: f64, lon1: f64, lat2: f64, lon2: f64) -> f64 {
     let d_lon = (lon2 - lon1).to_radians();
     let lat1 = lat1.to_radians();
     let lat2 = lat2.to_radians();
-    let a = (d_lat / 2.0).sin().powi(2)
-        + lat1.cos() * lat2.cos() * (d_lon / 2.0).sin().powi(2);
+    let a = (d_lat / 2.0).sin().powi(2) + lat1.cos() * lat2.cos() * (d_lon / 2.0).sin().powi(2);
     let c = 2.0 * a.sqrt().asin();
     EARTH_RADIUS_KM * c
 }
@@ -28,14 +27,8 @@ pub fn peer_load_score(model_entry: &Value, gpu_host: &Option<GpuHostStatus>) ->
             .and_then(|v| v.as_bool())
             .unwrap_or(false);
         if loaded {
-            let cpu = status
-                .get("cpu_pct")
-                .and_then(|v| v.as_u64())
-                .unwrap_or(0) as f64;
-            let gpu = status
-                .get("gpu_pct")
-                .and_then(|v| v.as_u64())
-                .unwrap_or(0) as f64;
+            let cpu = status.get("cpu_pct").and_then(|v| v.as_u64()).unwrap_or(0) as f64;
+            let gpu = status.get("gpu_pct").and_then(|v| v.as_u64()).unwrap_or(0) as f64;
             score += cpu.max(gpu);
         } else {
             score += 25.0;

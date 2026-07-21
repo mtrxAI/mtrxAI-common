@@ -312,7 +312,7 @@ checksum = "88904434abc2901f197fe8cc55f0445e7ded921dba5911dad2e2b39b48e663c4"
 
 [[package]]
 name = "mtrxai-attestation"
-version = "0.1.5"
+version = "0.2.1"
 dependencies = [
  "base64",
  "chrono",
@@ -328,18 +328,18 @@ dependencies = [
 
 [[package]]
 name = "mtrxai-auth"
-version = "0.1.5"
+version = "0.2.1"
 
 [[package]]
 name = "mtrxai-icell-api"
-version = "0.1.5"
+version = "0.2.1"
 dependencies = [
  "serde",
 ]
 
 [[package]]
 name = "mtrxai-protocol"
-version = "0.1.5"
+version = "0.2.1"
 dependencies = [
  "serde",
  "serde_json",
@@ -348,7 +348,7 @@ dependencies = [
 
 [[package]]
 name = "mtrxai-tee-attestation"
-version = "0.1.0"
+version = "0.2.1"
 dependencies = [
  "base64",
  "chrono",

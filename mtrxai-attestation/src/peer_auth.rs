@@ -48,19 +48,14 @@ pub fn verifying_key_from_hex(public_key_hex: &str) -> Result<VerifyingKey, Peer
     let key_bytes: [u8; 32] = bytes
         .try_into()
         .map_err(|_| PeerAuthError::InvalidPublicKey("expected 32-byte key".into()))?;
-    VerifyingKey::from_bytes(&key_bytes)
-        .map_err(|e| PeerAuthError::InvalidPublicKey(e.to_string()))
+    VerifyingKey::from_bytes(&key_bytes).map_err(|e| PeerAuthError::InvalidPublicKey(e.to_string()))
 }
 
 pub fn public_key_hex_from_signing_key(signing_key: &SigningKey) -> String {
     hex::encode(signing_key.verifying_key().to_bytes())
 }
 
-pub fn sign_peer_auth(
-    signing_key: &SigningKey,
-    peer_id: Uuid,
-    timestamp: i64,
-) -> PeerAuthProof {
+pub fn sign_peer_auth(signing_key: &SigningKey, peer_id: Uuid, timestamp: i64) -> PeerAuthProof {
     let message = canonical_peer_auth_bytes(&peer_id, timestamp);
     let sig = signing_key.sign(&message);
     PeerAuthProof {
@@ -126,7 +121,14 @@ mod tests {
         let peer_id = Uuid::new_v4();
         let timestamp = 1_700_000_000_i64;
         let proof = sign_peer_auth(&signing_key, peer_id, timestamp);
-        verify_peer_auth(&proof, &peer_id, &pub_hex, timestamp, PEER_AUTH_MAX_SKEW_SECS).unwrap();
+        verify_peer_auth(
+            &proof,
+            &peer_id,
+            &pub_hex,
+            timestamp,
+            PEER_AUTH_MAX_SKEW_SECS,
+        )
+        .unwrap();
     }
 
     #[test]
