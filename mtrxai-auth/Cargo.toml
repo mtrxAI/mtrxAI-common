@@ -1,0 +1,7 @@
+[package]
+name = "mtrxai-auth"
+version = "0.2.1"
+edition = "2021"
+description = "Shared constant-time token comparison helpers"
+
+[dependencies]
