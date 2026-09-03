@@ -4,8 +4,8 @@ Shared crates used across the mtrxAI sibling repos:
 
 | Crate | Consumers | Role |
 |-------|-----------|------|
-| `mtrxai-attestation` | peer, server | Build attestation / peer auth crypto |
-| `mtrxai-tee-attestation` | (optional) | GPU TEE attestation (not wired into prod images yet) |
+| `mtrxai-attestation` | peer, server | Build attestation / peer auth crypto. **Flux:** [mtrxAI-peer/docs/ATTESTATION.md](../mtrxAI-peer/docs/ATTESTATION.md) |
+| `mtrxai-tee-attestation` | (optional) | GPU TEE attestation (not wired into lobby verify yet) |
 | `mtrxai-protocol` | peer, server | Lobby WS `ProtocolMessage`, peer/GPU DTOs, ranking helpers, swarm presence |
 | `mtrxai-icell-api` | peer, icell | Inference-cell `/mtrxai/v1` paths and admin DTOs |
 | `mtrxai-auth` | peer, server, icell | Constant-time token comparison helpers |

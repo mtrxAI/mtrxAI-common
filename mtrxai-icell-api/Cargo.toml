@@ -1,6 +1,6 @@
 [package]
 name = "mtrxai-icell-api"
-version = "0.2.1"
+version = "0.3.0"
 edition = "2021"
 description = "Shared inference-cell admin API paths and DTOs"
 
