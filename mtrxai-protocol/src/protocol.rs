@@ -1,4 +1,5 @@
 use crate::peer::GpuHostStatus;
+use crate::webrtc::IceServerConfig;
 use serde::{Deserialize, Serialize};
 use serde_json::Value;
 use uuid::Uuid;
@@ -19,6 +20,9 @@ pub enum ProtocolMessage {
         cluster_name: Option<String>,
         #[serde(default, skip_serializing_if = "Option::is_none")]
         required_attestation_flags: Option<u64>,
+        /// Short-lived STUN/TURN servers for cluster WebRTC (omitted when TURN disabled).
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        ice_servers: Option<Vec<IceServerConfig>>,
     },
     UpdatePeerInfo {
         lat: f64,
